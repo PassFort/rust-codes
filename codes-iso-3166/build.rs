@@ -305,6 +305,12 @@ fn process_part_2_name_data(
         };
         row.insert("name".to_string(), name.into());
 
+        if record.get(6).map(|lang| lang == "eng").unwrap_or(false) {
+            if let Some(iso_name) = record.get(7) {
+                row.insert("iso_name".to_string(), iso_name.to_string().into());
+            }
+        }
+
         let name_local_variation = record.get(8).unwrap().to_string();
         if !name_local_variation.is_empty() {
             row.insert(

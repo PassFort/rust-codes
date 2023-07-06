@@ -128,4 +128,12 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
+
+    /// Returns the name corresponding to the name in iso-codes of this subdivision's name.
+     pub const fn iso_code_name(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].iso_name %}
+             Self::{{ id }} => Some("{{ codes[id].iso_name }}"),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
 {{ "}" }}
